@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		CALCULATOR - ADD , SUB , MULTI & DIV
+	</title>
+</head>
+
+<style type="text/css">
+
+	*{margin: 0px;padding: 0px;font-family: sans-serif;}
+	body
+    {height: 100vh;width: 100%;overflow: hidden;
+    background:#F8B1F0;}
+    div.main{height: 80vh;width: 34%;border: 1px solid transparent;display: flex;
+    	justify-content: center;align-items: center;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);  background-color:black;border-radius: 1.2rem;
+    	box-shadow: 16px 20px 10px rgba(0, 0, 0, 0.5);}
+    div.inner {height: 74vh;width: 94%;border:1px solid transparent;}	
+    div.inn {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    input{height: 14vh;width: 90%;border: none;outline: none;font-size:6vh;background-color: white;padding-right: 16px;text-align: right;color: black;}
+    button {height:8vh;width: 16%;font-size: 4vh;background-color: black;
+    	border: 1px solid #99238B;outline: none;color: white;}
+    div.first {border: 1px solid transparent;margin-top: 15px;display: flex;justify-content: space-evenly;}
+    div.second {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.third {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.four {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.five {border: 1px solid transparent;margin-top: 0px;display: flex;justify-content: space-evenly;}
+    #calci {width: 95%;height: 7.5vh;font-size: 5vh;background-color:#99238B;color: white;}
+    button:active {transform: scale(94%);}
+    #calci:active {transform: scale(99%);}
+    button:hover{border: 1px solid white;transition: 0.2s ease;color:#F05EF0;box-shadow: -2px -2px 15px #F05EF0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @media screen and (min-width:350px) and (max-width:480px){
+    body{background-color:#F8B1F0;}
+    div.main{height: 80vh;width: 80%;border: 1px solid transparent background-color: red;
+    	box-shadow: 16px 20px 10px rgba(0, 0, 0, 0.5);}
+    div.inner {height: 74vh;width: 94%;border:1px solid transparent;}	
+    div.inn {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    input{height: 12vh;width: 90%;border: none;outline: none;font-size:6vh;background-color: white;padding-left: 16px;}
+    button {height:8vh;width: 16%;font-size: 3vh;background-color: black;
+      border: 1px solid #99238B;outline: none;color: white;}
+    div.first {border: 1px solid transparent;margin-top: 30px;display: flex;justify-content: space-evenly;}
+    div.second {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.third {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.four {border: 1px solid transparent;margin-top: 5px;display: flex;justify-content: space-evenly;}
+    div.five {border: 1px solid transparent;margin-top: 8px;display: flex;justify-content: space-evenly;}
+    #calci {width: 95%;height: 8vh;font-size: 5vh;background-color:#99238B;color: white;}
+ button:active {transform: scale(94%);}
+    #calci:active {transform: scale(99%);}
+    }
+</style>
+
+<body>
+
+   <div class="main">
+   	  <div class="inner">
+   	  	<div class="inn"><input type="textbox" id="input" disabled></div>
+   	  	   <div class="first">
+   	  	   <button onclick="char('1')" value="1">1</button>
+   	  	   <button onclick="char('2')" value="2">2</button>
+   	  	   <button onclick="char('3')" value="3">3</button>
+   	  	   <button onclick="char('4')" value="4">4</button>
+   	  	   <button onclick="clean()" style="background-color:#99238B;color: white;">C</button>
+   	  	</div><br>
+   	  	 <div class="second">
+   	  	   <button onclick="char('5')" value="5">5</button>
+   	  	   <button onclick="char('6')" value="6">6</button>
+   	  	   <button onclick="char('7')" value="7">7</button>
+   	  	   <button onclick="char('8')" value="8">8</button>
+   	  	   <button onclick="ce()" style="background-color:#99238B;color: white;">CE</button>
+   	  	</div><br>
+   	  	<div class="third">
+   	  	   <button onclick="char('9')" value="9">9</button>
+   	  	   <button onclick="char('0')" value="0">0</button>
+   	  	   <button onclick="char('00')" value="00">00</button>
+   	  	   <button onclick="char('.')" value=".">.</button>
+   	  	   <button onclick="char('%')" style="background-color:#99238B;color: white;" >%</button>
+   	  	</div><br>
+   	  	<div class="four">
+   	  	   <button onclick="char('+')">+</button>
+   	  	   <button onclick="char('-')">-</button>
+   	  	   <button onclick="char('/')">/</button>
+   	  	   <button onclick="char('*')">X</button>
+   	  	   <button onclick="hello()" style="background-color:#99238B;color: white;">@</button>
+   	  	</div><br>
+   	  	<div class="five">
+   	  		<button onclick="calci()" id="calci">=</button>
+   	  	</div>
+   	  </div>
+   </div>
+
+<script type="text/javascript">
+	
+    let display=document.getElementById('input');
+    let current= ' ';
+    
+    function char(char) {
+    	current+=char;
+    	display.value=current;
+    }
+    function clean (){
+    	current=' ';
+    	display.value=' ';
+    }
+    function ce(){
+    	current=current.slice(0,-1);
+    	display.value=current;
+    }
+    function calci (){
+    	let result=eval(current);
+    	display.value=result;
+    	current=result.toString();
+    }
+
+    function hello(){
+    	alert("hello how are you !");
+    }
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

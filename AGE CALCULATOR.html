@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        AGE CALCULATOR
+    </title>
+</head>
+
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-family: sans-serif;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    div.main {
+        border: 1px solid red;
+        height: 42vh;
+        width: 32%;
+        position: absolute;
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    div.one {
+        border: 2px solid transparent;
+    }
+
+    div.two {
+        border: 2px solid transparent;
+        margin-top: 22px;
+    }
+
+    div.two p {
+        font-size: 3.8vh;
+        text-align: center;
+        color: white;
+    }
+
+    div.one h3 {
+        font-size: 3.4vh;
+        font-weight: lighter;
+        margin-top: 12px;
+        color: white;
+    }
+
+    div.main input {
+        height: 5.2vh;
+        width: 22%;
+        text-align: center;
+        font-size: 3.7vh;
+        margin-top: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-weight: bold;
+    }
+
+    button {
+        font-size: 3vh;
+        width: 30%;
+        border: none;
+        padding: 8px 20px;
+        background: rgba(255, 255, 255, 0.2);
+        color: black;
+        font-weight: lighter;
+        border-radius: 1.6rem;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    ::-webkit-input-placeholder {
+        font-size: 3vh;
+        color: black;
+        font-weight: lighter;
+    }
+
+    div.one input:focus {
+        border: 0.5px solid black;
+        outline: none;
+        height: 5.1vh;
+    }
+
+    #ans {
+        font-size: 3.4vh;
+        padding: 5px 8px;
+        color: white;
+    }
+
+    #check {
+        font-size: 3.4vh;
+        padding: 5px 8px;
+        background: red;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+    .area {
+        background: #4e54c8;
+        background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+        width: 100%;
+        height: 100vh;
+    }
+
+    .circles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .circles li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        animation: animate 25s linear infinite;
+        bottom: -150px;
+
+    }
+
+    .circles li:nth-child(1) {
+        left: 25%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 0s;
+    }
+
+
+    .circles li:nth-child(2) {
+        left: 10%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 2s;
+        animation-duration: 12s;
+    }
+
+    .circles li:nth-child(3) {
+        left: 70%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 4s;
+    }
+
+    .circles li:nth-child(4) {
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        animation-delay: 0s;
+        animation-duration: 18s;
+    }
+
+    .circles li:nth-child(5) {
+        left: 65%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 0s;
+    }
+
+    .circles li:nth-child(6) {
+        left: 75%;
+        width: 110px;
+        height: 110px;
+        animation-delay: 3s;
+    }
+
+    .circles li:nth-child(7) {
+        left: 35%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 7s;
+    }
+
+    .circles li:nth-child(8) {
+        left: 50%;
+        width: 25px;
+        height: 25px;
+        animation-delay: 15s;
+        animation-duration: 45s;
+    }
+
+    .circles li:nth-child(9) {
+        left: 20%;
+        width: 15px;
+        height: 15px;
+        animation-delay: 2s;
+        animation-duration: 35s;
+    }
+
+    .circles li:nth-child(10) {
+        left: 85%;
+        width: 150px;
+        height: 150px;
+        animation-delay: 0s;
+        animation-duration: 11s;
+    }
+
+
+
+    @keyframes animate {
+
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
+        }
+
+        100% {
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
+        }
+
+    }
+
+    @media screen and (min-width:350px) and (max-width:480px) {
+        div.main {
+            border: 1px solid red;
+            height: 50vh;
+            width: 75%;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div.one {
+            border: 2px solid transparent;
+        }
+
+        div.two {
+            border: 2px solid transparent;
+            margin-top: 20px;
+        }
+
+        div.two p {
+            font-size: 3.5vh;
+            text-align: center;
+            color: white;
+            padding: 5px 20px;
+            line-height: 40px;
+        }
+
+        div.one h3 {
+            font-size: 3.1vh;
+            font-weight: lighter;
+            margin-top: 12px;
+            color: white;
+            padding: 0px 10px;
+        }
+
+        div.main input {
+            height: 5.2vh;
+            width: 30%;
+            text-align: center;
+            font-size: 3.7vh;
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        button {
+            font-size: 2.4vh;
+            width: 45%;
+            border: none;
+            padding: 8px 22px;
+            background: rgba(255, 255, 255, 0.2);
+            color: black;
+            font-weight: lighter;
+            margin-top: 15px;
+            border-radius: 1.6rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        ::-webkit-input-placeholder {
+            font-size: 1.9vh;
+            text-align: center;
+            color: black;
+            font-weight: lighter;
+        }
+
+        div.one input:focus {
+            border: 0.5px solid black;
+            outline: none;
+            height: 5.1vh;
+        }
+
+        #ans {
+            font-size: 3.4vh;
+            padding: 5px 8px;
+            color: white;
+        }
+
+        #check {
+            font-size: 2vh;
+            padding: 5px 3px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            background-color: red;
+        }
+    }
+</style>
+
+<body>
+
+
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="one">
+            <center>
+                <h3>ENTER YOUR BIRTH DATE :</h3><br>
+                <input type="number" placeholder="day ..." id="day">
+                <input type="number" placeholder="month ..." id="month">
+                <input type="number" placeholder="year ..." id="year">
+                <br><br>
+                <button onclick="age()">SUBMIT</button>
+            </center>
+        </div>
+        <div class="two">
+            <p id="change">YOUR CURRENT AGE IS 0</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function age() {
+
+
+            var d1 = parseInt(document.getElementById('day').value);
+            var m1 = parseInt(document.getElementById('month').value);
+            var y1 = parseInt(document.getElementById('year').value);
+            var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            let dateObj = new Date();
+            let m2 = dateObj.getUTCMonth() + 1;
+            let d2 = dateObj.getUTCDate();
+            let y2 = dateObj.getUTCFullYear();
+
+            if (d1 > 31) { document.getElementById('change').innerHTML = "<span id='check'>PLEASE CHECK THE ENTERIES </span>" }
+            else if (y1 > y2 || y1 < 1000) { document.getElementById('change').innerHTML = "<span id='check'>PLEASE CHECK THE ENTERIES </span>" }
+            else if (m1 > 12) { document.getElementById('change').innerHTML = "<span id='check'>PLEASE CHECK THE ENTERIES </span>" }
+
+            else {
+                if (d1 > d2) { d2 = d2 + month[m2 - 1]; m2 = m2 - 1; }
+                if (m1 > m2) { m2 = m2 + 12; y2 = y2 - 1; }
+                var d = d2 - d1;
+                var m = m2 - m1;
+                var y = y2 - y1;
+                document.getElementById('change').innerHTML = "<span id='ans'>YOUR AGE IS " + y + " YEARS " + m + " MONTH AND " + d + " DAYS</span>";
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

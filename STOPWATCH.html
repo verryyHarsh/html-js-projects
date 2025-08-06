@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/1f66b98cb1.js" crossorigin="anonymous"></script>
+<title>STOPWATCH</title>
+</head>
+<style type="text/css">
+*{margin: 0px;padding: 0px;font-family: 'Bebas Neue', sans-serif;}
+body{height: 100vh;width: 100%;overflow: hidden;background-color: #DFE8F4;}
+div.watch {height: 65vh;width: 28%;border: 1px solid black;position: absolute;top: 50%;left: 50%;border-radius: 0.6rem;
+transform: translate(-50%,-50%);display: flex;justify-content: center;align-items: flex-end;background-color: black;
+box-shadow: 12px 14px 20px rgba(13, 116, 240, 0.6);}
+div.time {height: 25vh;width: 35%;border: 1px solid black;position: absolute;top: 42%;left: 50%;border-radius: 0.6rem;
+transform: translate(-50%,-50%);display: flex;justify-content: center;align-items: center;font-size: 12vh;
+letter-spacing: 4px;color: white;z-index: 2;border: 2px solid #0D74F0;background-color: #0D74F0;
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+-webkit-box-reflect: below 170px linear-gradient(transparent, rgba(0, 0, 0, .5));}
+button {border: 2px solid #0D74F0;background-color: transparent;outline: none;border-radius: 50%;height: 60px;
+width: 60px;margin: 50px 20px;font-size: 3vh;}
+button:hover {cursor: pointer;transition: 1s ease;}
+
+@media screen and (min-width:350px) and (max-width:480px){
+div.watch {height: 55vh;width: 65%;top: 45%;}
+div.time {height: 16vh;width: 80%;font-size: 7vh;top: 40%;border-radius: 0%;
+-webkit-box-reflect: below 180px linear-gradient(transparent, rgba(0, 0, 0, .5));}
+button {height: 45px;width: 45px;margin: 50px 10px;font-size: 2vh;}  
+}
+
+
+
+@media screen and (min-width:320px) and (max-width:450px){
+div.watch {height: 50vh;width: 65%;top: 45%;}
+div.time {height: 14vh;width: 75%;font-size: 7vh;top: 40%;border-radius: 0%;
+-webkit-box-reflect: below 200px linear-gradient(transparent, rgba(0, 0, 0, .5));}
+button {height: 45px;width: 45px;margin: 50px 9px;font-size: 1.9vh;}}
+</style>
+
+
+<body>
+<div class="watch">
+     <button onclick="stop()"><i class="fa-solid fa-stop" style="color: #0D74F0;"></i></button>
+     <button onclick="start()" id="play"><i class="fa-solid fa-play" style="color: #0D74F0;"></i></button>
+     <button onclick="restart()"><i class="fa-solid fa-arrow-turn-up" style="color: #0D74F0;"></i></button></div>
+</div>
+<div class="time"><i><span id="showtime">00:00:00</span></i></div>
+<script type="text/javascript">
+const time=document.getElementById('showtime');
+var hr=0;var min=0;var sec=0;var watch=true;    let audio =document.getElementById('bgm');
+function start(){if(watch==true){watch=false;cycle();}}
+function cycle(){
+if(watch == false) {sec = parseInt(sec);min = parseInt(min);hr = parseInt(hr);
+sec = sec + 1;if (sec == 60){min = min + 1;sec = 0;}
+if(min == 60){hr = hr + 1;min = 0;sec = 0;}
+if (sec < 10 ) { sec = "0" + sec;}if(min<10){min = "0" + min;}
+if (hr < 10 ) {hr = "0" + hr;}
+showtime.innerHTML = hr + ":" + min + ":" + sec;
+setTimeout("cycle()", 1000);}}
+function restart(){ showtime.innerHTML = "00:00:00";
+watch = true;hr = 0;sec = 0;min = 0;}function stop() {
+if(watch == false) {watch = true;a}}
+</script>
+</body>
+
+</html>

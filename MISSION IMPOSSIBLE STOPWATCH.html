@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STOPWATCH - START , STOP & RESEST !</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1f66b98cb1.js" crossorigin="anonymous"></script>
+</head>
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Bebas Neue', sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        font-family: sans-serif;
+        background: radial-gradient(circle at 20% 50%, #fec432 10%, #fd9c0f 25%, #cc5205 50%, #a93a05 75%, #661502 90%,
+                #570f03 100%);
+    }
+
+    div.video {
+        height: 55vh;
+        width: 40%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+    }
+
+    div.watch {
+        height: 55vh;
+        width: 40%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+    }
+
+    div.video video {
+        height: 55vh;
+        width: 120%;
+        object-fit: cover;
+        transform: scale(1);
+        filter: brightness(99%);
+    }
+
+    div.time,
+    div.button {
+        height: 27vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    div.button {
+        align-items: flex-end;
+    }
+
+    div.time {
+        font-size: 13vh;
+        -webkit-text-stroke: 1px orange;
+        border: 1px solid transparent;
+    }
+
+    button {
+        border: 2px solid orange;
+        background-color: transparent;
+        outline: none;
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        margin: 30px 20px;
+        font-size: 3vh;
+    }
+
+    button:hover {
+        cursor: pointer;
+        transition: 1s ease;
+    }
+
+    div.text {
+        border: 1px solid transparent;
+        font-size: 10vh;
+        color: wheat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 30;
+        font-size: 8vh;
+        padding: 10px 30px;
+        color: black;
+        font-family: sans-serif;
+        -webkit-text-stroke: 1px red;
+    }
+
+    #line {
+        text-decoration: line-through;
+        text-decoration-color: #fec432;
+        text-decoration-thickness: 2px;
+    }
+
+    @media screen and (min-width:350px) and (max-width:480px) {
+        body {
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        div.video {
+            height: 25vh;
+            width: 78%;
+        }
+
+        div.watch {
+            height: 25vh;
+            width: 78%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div.video video {
+            height: 25vh;
+            width: 120%;
+        }
+
+        div.time,
+        div.button {
+            height: 12.5vh;
+            width: 100%;
+        }
+
+        div.time {
+            font-size: 6vh;
+            letter-spacing: 4px
+        }
+
+        button {
+            height: 45px;
+            width: 45px;
+            margin: 0px 0px;
+            font-size: 2vh;
+            margin: 20px 10px;
+        }
+
+        div.text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding-left: 30;
+            font-size: 3.7vh;
+            padding: 0px 0px;
+        }
+    }
+
+    @media screen and (min-width:320px) and (max-width:450px) {
+        body {
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        div.video {
+            height: 25vh;
+            width: 80%;
+        }
+
+        div.watch {
+            height: 25vh;
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div.video video {
+            height: 25vh;
+            width: 120%;
+        }
+
+        div.time,
+        div.button {
+            height: 12.5vh;
+            width: 100%;
+        }
+
+        div.time {
+            font-size: 6vh;
+            letter-spacing: 4px
+        }
+
+        button {
+            height: 45px;
+            width: 45px;
+            margin: 0px 0px;
+            font-size: 2vh;
+            margin: 20px 10px;
+        }
+
+        div.text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding-left: 30;
+            font-size: 3.7vh;
+            padding: 0px 0px;
+        }
+    }
+</style>
+
+<body>
+    <div class="text"><i id="line">MISSION:IMPOSSIBLE THEME </i>!</div>
+    <div class="video"><audio id="bgm" style="visibility: none;" src="C:\Harsh\html\RESOURCE\bgm.m4a" loop></audio>
+        <video src="C:\Harsh\html\RESOURCE\shots.mp4" autoplay muted loop></video>
+    </div>
+    <div class="watch">
+        <div class="time"><i><span id="showtime">00:00:00</span></i></div>
+        <div class="button">
+            <button onclick="stop()"><i class="fa-solid fa-stop" style="color: #ff9500;"></i></button>
+            <button onclick="start()" id="play"><i class="fa-solid fa-play" style="color: #ff9500;"></i></button>
+            <button onclick="restart()"><i class="fa-solid fa-arrow-turn-up" style="color: #ff9500;"></i></button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const time = document.getElementById('showtime');
+        var hr = 0; var min = 0; var sec = 0; var watch = true; let audio = document.getElementById('bgm');
+        let music = document.getElementById('play'); play.addEventListner("click", start);
+        function start() {
+            if (watch == true) { watch = false; cycle(); }
+            audio.play();
+        }
+        function cycle() {
+            if (watch == false) {
+                sec = parseInt(sec); min = parseInt(min); hr = parseInt(hr);
+                sec = sec + 1; if (sec == 60) { min = min + 1; sec = 0; }
+                if (min == 60) { hr = hr + 1; min = 0; sec = 0; }
+                if (sec < 10) { sec = "0" + sec; } if (min < 10) { min = "0" + min; }
+                if (hr < 10) { hr = "0" + hr; }
+                showtime.innerHTML = hr + ":" + min + ":" + sec;
+                setTimeout("cycle()", 1000);
+            }
+        }
+        function restart() {
+            showtime.innerHTML = "00:00:00";
+            watch = true; hr = 0; sec = 0; audio.pause(); min = 0;
+        } function stop() {
+            if (watch == false) { watch = true; audio.pause(); }
+        }
+        play.addEventListner("click", stop);
+        play.addEventListner("click", restart);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+	<title>
+	COUNT EVERYTHING !
+	</title>
+</head>
+<style type="text/css">
+*{margin: 0px;padding: 0px;font-family: 'PT Sans', sans-serif;}
+body{background-color: #e3daff;}
+div.main {height:50vh;width: 32%;border:2px solid green;position: absolute;top: 50%;left: 50%;
+transform: translate(-50%,-50%);border-left: none;border-right: none;}
+div.head{height: 10vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 5vh;border-bottom:2px solid green; }
+div.count{height: 23vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 19vh;-webkit-text-stroke: 2px green;text-stroke: 2px green;color: transparent; text-shadow: 3px 3px green;}
+div.button{height: 17vh;width: 100%;display: flex;justify-content: space-evenly;
+align-items: center;border-top: 2px solid green;}
+button {height: 40px;width: 90px;border: 2px solid green;background: whitesmoke;font-weight: bold;}
+
+@media screen and (min-width:350px) and (max-width:480px){
+div.main {height:70vh;width: 80%;border:2px solid green;position: absolute;top: 50%;left: 50%;
+transform: translate(-50%,-50%);border-left: none;border-right: none;}
+div.head{height: 15vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 5vh;border-bottom:2px solid green; }
+div.count{height: 25vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 19vh;-webkit-text-stroke: 2px green;text-stroke: 2px green;color: transparent; text-shadow: 3px 3px green;}
+div.button{height: 30vh;width: 100%;display: flex;justify-content: space-evenly;
+align-items: center;border-top: 2px solid green;flex-direction: column;}
+button {height: 40px;width: 90px;border: 2px solid green;background: whitesmoke;font-weight: bold;}
+}
+
+
+
+@media screen and (min-width:320px) and (max-width:450px){
+div.main {height:70vh;width: 80%;border:2px solid green;position: absolute;top: 50%;left: 50%;
+transform: translate(-50%,-50%);border-left: none;border-right: none;}
+div.head{height: 15vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 5vh;border-bottom:2px solid green; }
+div.count{height: 25vh;width: 100%;display: flex;justify-content: center;align-items: center;
+font-size: 19vh;-webkit-text-stroke: 2px green;text-stroke: 2px green;color: transparent; text-shadow: 3px 3px green;}
+div.button{height: 30vh;width: 100%;display: flex;justify-content: space-evenly;
+align-items: center;border-top: 2px solid green;flex-direction: column;}
+button {height: 40px;width: 90px;border: 2px solid green;background: whitesmoke;font-weight: bold;}
+}
+
+</style>
+<body>
+<div class="main">
+<div class="head">COUNTER</div>
+<div class="count" id="num">00</div>
+<div class="button">
+	<button onclick="minus()">DECREASE</button>
+	<button onclick="restart()">RESERT</button>
+	<button onclick="add()">INCREASE</button>
+</div>
+</div>
+<script type="text/javascript">
+let count=0;
+function minus(){
+let num=document.getElementById('num').value;
+{count--;document.getElementById('num').innerHTML=count;}}
+function add(){
+let num=document.getElementById('num').value;
+count++;document.getElementById('num').innerHTML=count;}
+function restart(){count=0;
+document.getElementById('num').innerHTML="0"+count;}
+</script>
+</body>
+</html>
